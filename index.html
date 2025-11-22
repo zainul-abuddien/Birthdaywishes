@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        /*
+        * AESTHETIC STYLING
+        */
+
+        :root {
+            --primary-color: #ff6b6b; /* Reddish Pink */
+            --secondary-color: #ffe66d; /* Yellow/Gold */
+            --text-dark: #333;
+            --text-light: #fff;
+            --shadow-light: rgba(255, 255, 255, 0.6);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            /* CELEBRATION VIBE: Gradient Background */
+            background: linear-gradient(135deg, var(--primary-color) 0%, #ff9a8d 50%, #ffc371 100%);
+            overflow: hidden; /* Hide scrollbars if confetti goes off-screen */
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white box */
+            padding: 40px 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 0 10px var(--secondary-color); /* Double border/shadow */
+            max-width: 90%;
+            z-index: 10; /* Ensures content is above confetti */
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Birthday Title Styling */
+        h1 {
+            font-family: 'Pacifico', cursive; /* Script/handwriting font for a friendly feel */
+            font-size: 4em;
+            color: var(--primary-color);
+            text-shadow: 4px 4px 0 var(--secondary-color), 6px 6px 0 var(--text-dark);
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        /* Recipient Name Styling */
+        .recipient {
+            font-size: 2.5em;
+            color: var(--text-dark);
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        /* Message Styling */
+        p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3em;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .signature {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin-top: 20px;
+            display: block;
+        }
+
+        /*
+        * DECORATION ELEMENTS (Confetti & Balloon)
+        */
+
+        /* Confetti Effect */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: transparent;
+            border-radius: 50%;
+            animation: fall 10s infinite;
+            opacity: 0.8;
+            pointer-events: none; /* Allows clicking through the confetti */
+        }
+
+        /* Generate multiple confetti pieces with different colors and starting positions */
+        .confetti:nth-child(1) { left: 10%; background: #ff69b4; animation-duration: 7s; }
+        .confetti:nth-child(2) { left: 20%; background: #00bcd4; animation-duration: 10s; }
+        .confetti:nth-child(3) { left: 30%; background: #ffeb3b; animation-duration: 9s; }
+        .confetti:nth-child(4) { left: 40%; background: #4caf50; animation-duration: 6s; }
+        .confetti:nth-child(5) { left: 50%; background: #ff9800; animation-duration: 8s; }
+        .confetti:nth-child(6) { left: 60%; background: #9c27b0; animation-duration: 11s; }
+        .confetti:nth-child(7) { left: 70%; background: #ff69b4; animation-duration: 7.5s; }
+        .confetti:nth-child(8) { left: 80%; background: #00bcd4; animation-duration: 8.5s; }
+        .confetti:nth-child(9) { left: 90%; background: #ffeb3b; animation-duration: 6.5s; }
+        .confetti:nth-child(10) { left: 15%; background: #ff9800; animation-duration: 9.5s; }
+
+        /* Confetti Animation */
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0.2; }
+        }
+        
+        /* Floating Balloon (Simple shape with CSS) */
+        .balloon {
+            position: absolute;
+            width: 80px;
+            height: 100px;
+            background: var(--primary-color);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            bottom: -50px; /* Start off-screen */
+            left: 5%;
+            box-shadow: inset -10px -10px 0 rgba(0, 0, 0, 0.1);
+            animation: floatUp 15s ease-in-out infinite, sway 4s ease-in-out infinite alternate;
+            z-index: 5;
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: var(--secondary-color); /* String */
+            bottom: -100px;
+            left: 50%;
+        }
+
+        /* Balloon Animations */
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 0.8; }
+            50% { transform: translateY(-300px) scale(1.1); opacity: 1; }
+            100% { transform: translateY(0) scale(1); opacity: 0.8; }
+        }
+
+        @keyframes sway {
+            from { transform: translateX(0); }
+            to { transform: translateX(20px); }
+        }
+        
+        /* Fade in animation for the main content */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+
+    <div class="balloon"></div>
+
+    <div class="container">
+        <h1>🥳 Happy Birthday! 🎈</h1>
+        <h2 class="recipient">To The Wonderful [Zeba Ayisha]</h2>
+        
+        <p>
+            Wishing you the happiest of birthdays filled with joy, laughter, and everything you wished for! 
+            You deserve all the wonderful things life has to offer. May this year be your best one yet!
+        </p>
+        
+        <p>
+            Hope you have a day as amazing and bright as you are.
+        </p>
+        <p>
+            Allah aapko hamesha aapne saaye me rakhe✨
+        </p>
+        
+        <span class="signature"></span>
+    </div>
+
+</body>
+</html>
